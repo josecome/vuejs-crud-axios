@@ -3,32 +3,32 @@
     {
       "id": 1,
       "task": "Travel to the next city",
-      "status": "Ongoing"
+      "status": "Completed"
     },
     {
       "id": 2,
       "task": "Travel to the longest city",
-      "status": "Ongoing"
+      "status": "Completed"
     },
     {
       "id": 3,
       "task": "Test",
-      "status": "Ongoing"
+      "status": "Completed"
     },
     {
       "id": 4,
       "task": "Test 2",
-      "status": "Ongoing"
+      "status": "Completed"
     },
     {
       "id": 5,
       "task": "Test 3",
-      "status": "Ongoing"
+      "status": "Completed"
     },
     {
       "id": 6,
       "task": "Test 4",
-      "status": "Ongoing"
+      "status": "Completed"
     }
   ]
 }

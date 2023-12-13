@@ -3,6 +3,23 @@ import {ref, onMounted } from 'vue'
 import axios from 'axios'
 const task = ref([])
 const taks_input = ref('')
+const completed = async (id) => {
+        let confirm_message = "Confirm to update task as completed"
+        if (confirm(confirm_message) == false) {
+            return false;
+        }
+        const v = { "status":"Completed" }
+        const res = await axios.patch(`http://127.0.0.1:3000/task/${id}`, v,
+          {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+          }
+        );
+        console.log(res);
+    }
+
 const addTask = async () => {
         const v = { "id": task.value.length + 1, "task":taks_input.value, "status":"Ongoing" }
         const res = await axios.post('http://127.0.0.1:3000/task/', v,
