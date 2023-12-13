@@ -4,8 +4,7 @@ import axios from 'axios'
 const task = ref([])
 const taks_input = ref('')
 const addTask = async () => {
-        alert(totalTasks.value)
-        const v = { "id": (Number(totalTasks) + 1), "task":taks_input.value, "status":"Ongoing", "favorite":0 }
+        const v = { "id": task.value.length + 1, "task":taks_input.value, "status":"Ongoing" }
         const res = await axios.post('http://127.0.0.1:3000/task/', v,
           {
             headers: {
@@ -38,7 +37,7 @@ onMounted(getData)
         placeholder="Add task"
         style="width: 180px;" />
         <Button
-            @btn-click="addTask"
+            @click="addTask"
             :text="'Add Task'"
             :className="'btn btn-primary'"   
           />
