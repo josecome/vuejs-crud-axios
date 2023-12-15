@@ -1,22 +1,23 @@
 # vuejs_crud_axios
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+This app aim to show how to use Vue with axios to integrate with backend.
+<img src="public/home.jpg"> 
 
 ## Project Setup
 
 ```sh
 npm install
+npm install bootstrap@5.3.0-alpha3
+npm i bootstrap-icons
 ```
 
-### Compile and Hot-Reload for Development
+### Run backend (Json Server will be served in port: 3000)
+
+```sh
+npm run start
+```
+
+### Compile and Hot-Reload for Development (App will be served in port: 5173)
 
 ```sh
 npm run dev
@@ -26,32 +27,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
