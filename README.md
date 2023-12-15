@@ -1,7 +1,7 @@
 # vuejs_crud_axios
 
 This app aim to show how to build Vue app integrated to backend using axios.
-<img src="public/home.jpg"> 
+<img src="public/home2.jpg"> 
 
 ## Project Setup
 
