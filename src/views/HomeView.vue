@@ -1,90 +1,102 @@
 <script setup>
-import {ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
-const task = ref([])
-const taks_input = ref('')
-const completed = async (id) => {
-        let confirm_message = "Confirm to update task as completed"
-        if (confirm(confirm_message) == false) {
-            return false;
-        }
-        const v = { "status":"Completed" }
-        const res = await axios.patch(`http://127.0.0.1:3000/task/${id}`, v,
-          {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-          }
-        );
-        console.log(res);
-    }
-
-const addTask = async () => {
-        const v = { "id": task.value.length + 1, "task":taks_input.value, "status":"Ongoing" }
-        const res = await axios.post('http://127.0.0.1:3000/task/', v,
-          {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-          }
-        );
-        console.log(res);
-    }
+const tasks  = ref([])
+const task_input = ref('')
 const getData = async () => {
   const res = await axios.get(
     'http://127.0.0.1:3000/task'
-    )
-    task.value = res.data
-    console.log(res.data)
+  )
+  console.log(res.data)
+  tasks.value = res.data
+}
+const completed = async (id) => {
+  let confirm_message = "Confirm to update task as completed"
+  if(confirm(confirm_message) == false) {
+    return false;
+  }
+  const v = {"status": "Completed"}
+  const res = await axios.patch(
+    `http://127.0.0.1:3000/task/${ id }`, v,
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      }
+    }
+  );
+  console.log(res)
+  refreshPage();
+}
+const addTask = async () => {
+  const v = {"id": tasks.value.length + 1, 
+  "task": task_input.value,
+  "status": "Ongoing"}
+  const res = await axios.post(
+    `http://127.0.0.1:3000/task`, v,
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      }
+    }
+  );
+  console.log(res)
+  refreshPage();
 }
 onMounted(getData)
+const refreshPage = () => {
+  location.reload()
+}
 </script>
 <style>
     @import "bootstrap/dist/css/bootstrap.css";
     @import "bootstrap-icons/font/bootstrap-icons.css";
 </style>
-
 <template>
-  <main>
-    <div class="center" style="width: 100%;">
-    <div class="center" style="display: flex;">
-        <input type="text" id="txtaddTask"  class="form-control" v-model="taks_input" 
-        placeholder="Add task"
-        style="width: 180px;" />
-        <Button
-            @click="addTask"
-            :text="'Add Task'"
-            :className="'btn btn-primary'"   
-          />
-    </div>
-    </div>
-    <div v-for="t in task"
-      style="padding: 8px; width: 80%; border: 1px solid gray;">
-      <table>
-        <tr>
-          <td>
-             {{ t.id }}
-          </td>
-          <td>
-             {{ t.task }}
-          </td>
-          <td>
-            <i v-show="t.status === 'Completed'" 
-            class="bi bi-check-circle-fill" 
-            style="font-size: 24px; color: #EC7063;">
-            </i>  
-          </td>
-          <td>
-            <button v-show="t.status === 'Ongoing'" @click="completed(t.id)">Mark as completed</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </main>
+ <input type="text" v-model="task_input" 
+ class="form-control"
+ style="width: 200px; display: inline-block;"
+ />  
+ <button
+ @click="addTask"
+ class="btn btn-primary"
+ style="display: inline-block;"
+ >
+  Add Task
+ </button>
+<div 
+  v-for="task in tasks"  
+  style="padding: 8px; width: 80%; border: 1px solid gray;"
+
+>
+<table>
+  <tr>
+    <td>
+      <div id="iddiv">{{ task.id }}</div>
+    </td>
+    <td class="width160">
+      {{ task.task }}
+    </td>
+    <td>
+      <i v-show="task.status === 'Completed'"
+      class="bi bi-check-circle-fill"
+      style="font-size: 24px; color: red"
+      ></i>
+    </td>
+    <button v-show="task.status === 'Ongoing'"
+    @click="completed(task.id)"
+    >
+    Mark as completed
+    </button>
+  </tr>
+</table>
+</div>
 </template>
 <style scoped>
+.width160 {
+  width: 220px;
+}
 .center {
   margin: auto;
   width: 50%;

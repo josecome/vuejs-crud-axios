@@ -11,24 +11,14 @@
       "status": "Completed"
     },
     {
-      "id": 3,
-      "task": "Test",
-      "status": "Completed"
-    },
-    {
-      "id": 4,
-      "task": "Test 2",
-      "status": "Completed"
-    },
-    {
-      "id": 5,
-      "task": "Test 3",
-      "status": "Completed"
-    },
-    {
-      "id": 6,
-      "task": "Test 4",
-      "status": "Completed"
-    }
+        "id": 3,
+        "task": "Return from city A",
+        "status": "Completed"
+      },
+      {
+        "id": 2,
+        "task": "Return from city B",
+        "status": "Ongoing"
+      }
   ]
 }
